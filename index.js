@@ -4,6 +4,7 @@ const conectarDB = require('./config/db')
 
 // crear servidor
 const app = express();
+app.use(express.json());
 
 
 // conectar a la base de datos
