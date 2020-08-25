@@ -1,6 +1,7 @@
 const Usuario = require('../models/Usuario')
 const bcryptjs = require('bcryptjs');
 const {validationResult} = require('express-validator')
+const jwt = require('jsonwebtoken')
 
 exports.crearUsuario = async (req, res) => {
 
@@ -10,6 +11,7 @@ exports.crearUsuario = async (req, res) => {
   if (!errors.isEmpty()) {
       return res.status(400).json({errores: errors.array()})
   }
+
   // extrae email y password
   const {email, password } = req.body;
 
@@ -30,8 +32,25 @@ exports.crearUsuario = async (req, res) => {
 
   // guardar usuario
     await usuario.save();
-  // mensaje de confirmacion
-    res.json({msg: 'Usuario creado correctamente'})
+
+    // Crear y firmar el JWT
+    const payload = {
+      usuario: {
+        id: usuario.id
+      }
+    };
+    // firmar el JWt
+    jwt.sign(payload, process.env.SECRETA, {
+      expiresIn: 3600000
+    }, (error, token) => {
+      if (error) {
+        throw error;
+      }
+      // mensaje de confirmacion
+        res.json({token})
+    });
+
+
   } catch (error) {
     console.log(error)
     res.status(400).send("Hubo un error incertando el registro");
