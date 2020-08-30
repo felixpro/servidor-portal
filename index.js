@@ -15,6 +15,7 @@ app.use(express.json({extended: true}))
 
 // Importar rutas
 app.use('/api/usuarios', require('./routes/usuarios'))
+app.use('/api/auth', require('./routes/auth'))
 
 // Puerto de la app
 const PORT = process.env.PORT || 4000;
