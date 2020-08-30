@@ -16,11 +16,20 @@ router.post('/',
   proyectoController.crearProyecto
 )
 
+// Obtener proyectos
 router.get('/',
   auth,
   proyectoController.obtenerProyectos
 )
 
+// Actualiza el proyecto
+router.put('/:id',
+  auth,
+  [
+    body('nombre', 'El nombre del proyecto es obligatorio').not().isEmpty()
+  ],
+  proyectoController.actualizaProyecto
+)
 
 
 
