@@ -31,6 +31,11 @@ router.put('/:id',
   proyectoController.actualizaProyecto
 )
 
-
+// Eliminar un proyectos
+// Actualiza el proyecto
+router.delete('/:id',
+  auth,
+  proyectoController.eliminarProyecto
+)
 
 module.exports = router;
