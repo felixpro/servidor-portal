@@ -1,4 +1,4 @@
-const Proyecto = require('../models/Proyecto')
+const Proyecto = require('../models/proyecto')
 const { body, validationResult } = require('express-validator');
 
 

@@ -1,5 +1,5 @@
 const Tarea = require('../models/Tarea')
-const Proyecto = require('../models/Proyecto')
+const Proyecto = require('../models/proyecto')
 
 const bcryptjs = require('bcryptjs');
 const {validationResult} = require('express-validator')
