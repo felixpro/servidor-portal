@@ -24,11 +24,13 @@ app.use('/api/proyectos', require('./routes/proyectos'))
 app.use('/api/tareas', require('./routes/tareas'))
 
 // Puerto de la app
-const PORT = process.env.PORT || 4000;
+const port = process.env.port || 4000;
 
 app.get('/', (req, res) => {
-  res.send("Hola bro!")
+  res.send("Working")
 })
 
 // arrancar la app
-app.listen(PORT)
+app.listen(port, '0.0.0.0', () => {
+  console.log(`DB connectada ${port}`)
+})
